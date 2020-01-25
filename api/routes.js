@@ -13,7 +13,7 @@ const Url = require('./models/Url');
 // @description Shorten a long url to a short url
 // 
 router.post('/api/shorten', async (req, res) => {
-    const { longUrl } = req.body;
+    const { longUrl, customID } = req.body;
     const baseURL = config.get('baseURL');
 
     // Check Base Url
@@ -22,12 +22,12 @@ router.post('/api/shorten', async (req, res) => {
     }
 
     // Create url code
-    const urlCode = shortid.generate();
+    const urlCode = customID ? customID :shortid.generate();
 
     // Check longurl
     if (validUrl.isUri(longUrl)) {
         try {
-            let url = await Url.findOne({ longUrl });
+            let url = await Url.findOne({ urlCode: customID });
 
             if(url) {
                 res.json(url);
