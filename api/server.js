@@ -8,7 +8,7 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-app.use('/api', routes);
+app.use(routes);
 
 app.listen(5000 , () => {
     console.log('running');
