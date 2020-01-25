@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const routes = require('./routes');
 
 const app = express();
 
@@ -7,7 +8,7 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-app.use('/api', () => { return { is: true}});
+app.use('/api', routes);
 
 app.listen(5000 , () => {
     console.log('running');
