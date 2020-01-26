@@ -1,8 +1,9 @@
+require('dotenv').config();
+
 const express = require('express');
 const router = express.Router();
 const validUrl = require('valid-url');
 const shortid = require('shortid');
-const config = require('config');
 
 // Get URL schema
 const Url = require('./models/Url');
@@ -14,7 +15,7 @@ const Url = require('./models/Url');
 // 
 router.post('/api/shorten', async (req, res) => {
     const { longUrl, customID } = req.body;
-    const baseURL = config.get('baseURL');
+    const baseURL = process.env.BASE_URL;
 
     // Check Base Url
     if(!validUrl.isUri(baseURL)) {
