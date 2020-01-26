@@ -23,7 +23,7 @@ router.post('/api/shorten', async (req, res) => {
     }
 
     // Create url code
-    const urlCode = customID ? customID :shortid.generate();
+    const urlCode = customID ? customID : shortid.generate();
 
     // Check longurl
     if (validUrl.isUri(longUrl)) {
@@ -31,7 +31,7 @@ router.post('/api/shorten', async (req, res) => {
             let url = await Url.findOne({ urlCode: customID });
 
             if(url) {
-                res.json(url);
+                res.status(208).json('The suffix is already in use');
             } else {
                 const shortUrl = baseURL + '/' + urlCode;
                 url = new Url({
@@ -45,7 +45,7 @@ router.post('/api/shorten', async (req, res) => {
                 res.json(url);
             }
         } catch (error) {
-            console.error(err);
+            console.error(error);
             res.status(500).json('Server error');
         }
     } else {
