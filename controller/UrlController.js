@@ -21,7 +21,7 @@ module.exports = {
         if (validUrl.isUri(longUrl)) {
             try {
                 let url = await Url.findOne({ urlCode: customID });
-
+                
                 if(url) {
                     res.status(208).json('The suffix is already in use');
                 } else {
@@ -50,6 +50,9 @@ module.exports = {
             const url = await Url.findOne({ urlCode: req.params.code });
 
             if(url) {
+                url.updateOne({ id: url._id}, { clicks: url.clicks++});
+                url.save();
+                
                 return res.redirect(url.longUrl);
             } else {
                 return res.status(404).json('No url found');
