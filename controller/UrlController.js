@@ -5,6 +5,7 @@ const shortid = require('shortid');
 const Url = require('../models/Url');
 
 module.exports = {
+    // Store URL wiith custom id or generate one
     async create(req, res) {
         const { longUrl, customID } = req.body;
         const baseURL = process.env.BASE_URL;
@@ -45,11 +46,13 @@ module.exports = {
         }
     },
 
+    // Redirect user when access url shorten
     async redirect(req, res) {
         try {
             const url = await Url.findOne({ urlCode: req.params.code });
 
             if(url) {
+                // Save access as a click into url collection
                 url.updateOne({ id: url._id}, { clicks: url.clicks++});
                 url.save();
                 
@@ -63,6 +66,7 @@ module.exports = {
         }
     },
 
+    // Get all url data from collection to show as stat
     async stats(req, res) {
         try {
             const url = await Url.findOne({ urlCode: req.params.code });
