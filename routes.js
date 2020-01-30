@@ -20,5 +20,12 @@ router.post('/api/shorten', UrlController.create);
 // 
 router.get('/:code', UrlController.redirect);
 
+//
+// GET
+// @route GET /:code/stats
+// @description get stats from url
+// 
+router.get('/:code/stats', UrlController.stats);
+
 module.exports = router;
 

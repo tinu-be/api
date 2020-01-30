@@ -36,8 +36,8 @@ module.exports = {
                     await url.save();
                     res.json(url);
                 }
-            } catch (error) {
-                console.error(error);
+            } catch (err) {
+                console.error(err);
                 res.status(500).json('Server error');
             }
         } else {
@@ -58,6 +58,21 @@ module.exports = {
                 return res.status(404).json('No url found');
             }
         } catch (err) {
+            console.error(err);
+            res.status(500).json('Server error');
+        }
+    },
+
+    async stats(req, res) {
+        try {
+            const url = await Url.findOne({ urlCode: req.params.code });
+
+            if(url) {
+                return res.json(url);
+            } else {
+                return res.status(404).json('No url found');
+            }
+        } catch(err) {
             console.error(err);
             res.status(500).json('Server error');
         }
