@@ -10,7 +10,7 @@ This is a personal project based in nodeJS to url shortener named [tinu.be](http
 ## Setup
 By the first rename the file `.env-sample` to `.env` and fill with all necessary info:
 
-```
+```sh
 # Environment variables
 API_PORT=5000
 CORS_ORIGIN=*
