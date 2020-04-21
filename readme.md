@@ -16,7 +16,6 @@ API_PORT=5000
 CORS_ORIGIN=*
 DATABASE_HOST=mongodb+srv://<user>:<pass>@<host>.mongodb.net/<database>?retryWrites=true&w=majority
 BASE_URL=http://localhost:5000
-CUSTOM_ROOT_PATH=../../client/build
 ```
 
 ## Build
