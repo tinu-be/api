@@ -1,6 +1,4 @@
 # tinu.be - api
-[![Codeship Status for itbruno/tinube-api](https://app.codeship.com/projects/d3b5e810-2470-0138-77f1-624fde232fc7/status?branch=master)](https://app.codeship.com/projects/383222)
-
 This is a personal project based in nodeJS to url shortener named [tinu.be](https://tinu.be)
 
 ## Requirements
